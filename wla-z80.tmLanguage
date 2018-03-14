@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array>
+		<string>asm</string>
+		<string>inc</string>
+		<string>dat</string>
+		<string>z80</string>
+	</array>
+	<key>name</key>
+	<string>WLA DX Z80 Asm</string>
+	<key>patterns</key>
+	<array>
+
+		<!-- WLA DX prameters -->
+		<dict>
+			<key>comment</key>
+			<string>WLA DX prameters</string>
+			<key>match</key>
+			<string>(?i)\b(align|args|asc|bank|banks|banksize|bankstotal|data|db|defaultslot|desc|export|force|free|fsize|instanceof|map|nargs|overwrite|read|returnorg|semifree|size|skip|slot|slotsize|start|superfree|swap|to)(?=\b)</string>
+			<key>name</key>
+			<string>keyword.directive.parameters.asm</string>
+		</dict>		
+
+		<!-- WLA DX commands -->
+		<dict>
+			<key>comment</key>
+			<string>WLA DX commands</string>
+			<key>match</key>
+			<string>(?i)\.(computesmschecksum|sdsctag|smstag|emptyfill|export|outname|asc|asctable|asciitable|asm|background|bank|block|br|breakpoint|byt|rombanksize|db|dbcos|dbrnd|dbsin|define|def|ds|dsb|dstruct|dsw|dw|dwcos|dwrnd|dwsin|else|enda|endasm|endb|ende|endif|endm|endme|endr|endro|ends|endst|enum|equ|fail|fclose|fopen|fread|fsize|if|ifdef|ifdefm|ifeq|ifexists|ifgr|ifgreq|ifle|ifleeq|ifndef|ifndefm|ifneq|incbin|incdir|include|input|macro|memorymap|org|orga|printt|printv|ramsection|redefine|redef|repeat|rept|rombankmap|rombanks|seed|section|shift|slot|struct|sym|symbol|unbackground|undefine|undef|word)(?=\b)</string>
+			<key>name</key>
+			<string>keyword.directive.extended.asm</string>
+		</dict>
+
+		<!-- Special labels -->
+		<dict>
+			<key>comment</key>
+			<string>Special labels</string>
+			<key>match</key>
+			<string>^((\+{1,3})|(\-{1,3})|(_[_bf]))(:|\b)</string>
+			<key>name</key>
+			<string>keyword.label.unnamed.asm</string>
+		</dict>		
+
+
+		<!-- Z80 registers -->
+		<dict>
+			<key>comment</key>
+			<string>Z80 registers</string>
+			<key>match</key>
+			<string>(?i)(\b(a|b|c|d|e|h|l|i|r|xl|lx|xh|hx|ixl|ixh|yl|ly|yh|hy|iyl|iyh)\b)|(\baf')|(\b(af|bc|de|hl|sp|ix|iy)\b)</string>
+			<key>name</key>
+			<string>variable.parameter.register.asm</string>
+		</dict>
+
+		<!-- Labels -->
+		<dict>
+			<key>comment</key>
+			<string>Label</string>
+			<key>match</key>
+			<string>^\s*(([a-zA-Z][a-zA-Z_.0-9]*)|[0-9]+):(?=\s|$)</string>
+			<key>name</key>
+			<string>entity.name.label.def.asm</string>
+		</dict>
+
+
+		<!-- Z80 Opcodes -->
+		<dict>
+			<key>comment</key>
+			<string>Z80 opcodes</string>
+			<key>match</key>
+			<string>(?i)(?&lt;=\s|:|\+|\-|_)(adc|add|and|bit|call|ccf|cp|cpl|cpd|cpdr|cpi|cpir|daa|dec|di|djnz|ei|ex|exx|halt|im|in|inc|ind|indr|inf|ini|inir|jp|jr|ld|ldd|lddr|ldi|ldir|neg|nop|exx|or|otdr|otir|out|outd|outi|pop|push|res|ret|reti|retn|rl|rla|rlc|rlca|rld|rr|rra|rrc|rrca|rrd|rst|sbc|scf|set|sla|sli|sll|sra|srl|sub|xor)(?=\s|:|$)</string>
+			<key>name</key>
+			<string>keyword.other.command.asm</string>
+		</dict>
+
+		<!-- Numbers -->
+		<dict>
+			<key>comment</key>
+			<string>HEX/DEC/BIN number</string>
+			<key>match</key>
+			<string>(?i)(%[01]+\b)|(\b[01]+b\b)|((#|\$)[0-9a-f]+\b)|(\b([0-9]+|0x[0-9a-f]+|[0-9][0-9a-f]*h)\b)</string>
+			<key>name</key>
+			<string>constant.numeric.asm</string>
+		</dict>
+
+
+
+		<!-- Comments -->
+		<dict>
+			<key>comment</key>
+			<string>Comment line</string>
+			<key>match</key>
+			<string>(//|;).*</string>
+			<key>name</key>
+			<string>comment.line.asm</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(/\*)</string>
+			<key>comment</key>
+			<string>C-style comment block</string>
+			<key>end</key>
+			<string>(\*/)</string>
+			<key>name</key>
+			<string>comment.block.asm</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(\.noasm)</string>
+			<key>comment</key>
+			<string>.noasm/.asm comment block</string>
+			<key>end</key>
+			<string>(\.asm)</string>
+			<key>name</key>
+			<string>comment.block.asm</string>
+		</dict>
+
+		<!-- Strings -->
+		<dict>
+			<key>comment</key>
+			<string>Single-line string</string>
+			<key>match</key>
+			<string>'[^']*'</string>
+			<key>name</key>
+			<string>string.asm</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Single-line string</string>
+			<key>match</key>
+			<string>"[^"]*"</string>
+			<key>name</key>
+			<string>string.asm</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>source.z80asm</string>
+	<key>uuid</key>
+	<string>547ff0be-7a98-41c7-ad26-b130253995d6</string>
+</dict>
+</plist>
